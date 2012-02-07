@@ -1,9 +1,10 @@
 /*
  * $Id$
  * 
- * Copyright $Date:: $.
- * Author: Konstantin Nekrasov,
+ * Copyright $Date$.
+ * Author: Konstantin Nekrasov
  */
+
 package php.parser;
 
 import java.io.Reader;

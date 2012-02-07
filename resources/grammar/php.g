@@ -1,8 +1,8 @@
 /*
  * $Id$
  * 
- * Copyright $Date:: $.
- * Author: Konstantin Nekrasov.
+ * Copyright $Date$
+ * Author: Konstantin Nekrasov
  *
  * First lines of this appeared in November 2011
  */
