@@ -1,3 +1,9 @@
+/*
+ * $Id$
+ * 
+ * Copyright $Date:: $.
+ * Author: Konstantin Nekrasov,
+ */
 package php.parser;
 
 import java.io.Reader;
