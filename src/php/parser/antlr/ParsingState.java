@@ -2,7 +2,7 @@
  * $Id$
  * 
  * Copyright $Date$.
- * Author: Konstantin Nekrasov,
+ * Author: Konstantin Nekrasov
  */
 
 package php.parser.antlr;
