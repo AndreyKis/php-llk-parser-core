@@ -1,0 +1,12 @@
+#!/bin/bash
+ANTLR_HOME=../../lib
+
+rm ./*.{java,txt,smap} 2>/dev/null
+java -cp $ANTLR_HOME/antlr.jar antlr.Tool ./phpLexer.g
+java -cp $ANTLR_HOME/antlr.jar antlr.Tool ./phpOutTheCode.g
+java -cp $ANTLR_HOME/antlr.jar antlr.Tool ./php.g
+
+mkdir -p ../../src/php/parser/antlr
+mv *.java ../../src/php/parser/antlr/
+
+rm ./*.{txt,smap} >/dev/null
