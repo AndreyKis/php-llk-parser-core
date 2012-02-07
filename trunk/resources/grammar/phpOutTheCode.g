@@ -1,3 +1,10 @@
+/*
+ * $Id$
+ * 
+ * Copyright $Date:: $.
+ * Author: Konstantin Nekrasov,
+ */
+
 header {
   package php.parser.antlr;
   import php.parser.antlr.ParsingState;

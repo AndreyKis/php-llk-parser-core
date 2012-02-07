@@ -1,5 +1,12 @@
-/* Konstantin Nekrasov, November 2011
-*/
+/*
+ * $Id$
+ * 
+ * Copyright $Date:: $.
+ * Author: Konstantin Nekrasov.
+ *
+ * First lines of this appeared in November 2011
+ */
+
 header {
 package php.parser.antlr;
 
