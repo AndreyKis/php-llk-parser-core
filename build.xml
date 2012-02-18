@@ -3,15 +3,71 @@
     <property name="lib.dir" value="lib"/>
     <property name="src.dir" value="src"/>
     <property name="dest.dir" value="bin/"/>
+    <property name="grammar.dir" value="resources/grammar"/>
   
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
-  
-    <target name="clean">
-        <delete dir="bin"/>
+
+    <target name="cleangrammar">
+      <delete includeemptydirs="true">
+        <fileset dir="${grammar.dir}">
+          <include name="**/*.java"/>
+          <include name="**/*.smap"/>
+          <include name="**/*.txt"/>
+        </fileset>
+      </delete>
     </target>
-    <target name="build" depends="clean">
+
+    <target name="invokeantlr" depends="cleangrammar">
+      
+
+      <java classname="antlr.Tool"
+        dir="${grammar.dir}"
+        fork="true"
+        failonerror="true"
+        maxmemory="128m">
+        <arg value="phpLexer.g"/>
+        <classpath>
+          <pathelement location="${lib.dir}/antlr.jar"/>
+        </classpath>
+      </java>
+      <java classname="antlr.Tool"
+        failonerror="true"
+        dir="${grammar.dir}"
+        fork="true"
+        maxmemory="128m">
+        <arg value="phpOutTheCode.g"/>
+        <classpath>
+          <pathelement location="${lib.dir}/antlr.jar"/>
+        </classpath>
+      </java>
+      <java classname="antlr.Tool"
+        failonerror="true"
+        fork="true"
+        dir="${grammar.dir}"
+        maxmemory="128m">
+        <arg value="php.g"/>
+        <classpath>
+          <pathelement location="${lib.dir}/antlr.jar"/>
+        </classpath>
+      </java>
+
+      <mkdir dir="${src.dir}/php/parser/antlr/"/>
+
+      <move todir="${src.dir}/php/parser/antlr/">
+        <fileset dir="${grammar.dir}">
+          <include name="**/*.java"/>
+        </fileset>
+      </move>
+
+    </target>
+
+    <target name="clean">
+      <delete dir="bin"/>
+    </target>
+
+    <target name="build" depends="clean,invokeantlr">
       <mkdir dir="${dest.dir}"/>
       <javac srcdir="${src.dir}" destdir="${dest.dir}" classpathref="classpath"/>
     </target>
