@@ -1,7 +1,6 @@
 /*
  * $Id$
  * 
- * Copyright $Date$.
  * Author: Konstantin Nekrasov
  */
 
@@ -9,6 +8,7 @@ package php.parser;
 
 import java.io.Reader;
 
+import php.parser.antlr.MarkedAST;
 import php.parser.antlr.OutTheCodeFilter;
 import php.parser.antlr.ParsingState;
 import php.parser.antlr.PhpLexer;
@@ -38,6 +38,7 @@ public class Parser {
 		OutTheCodeFilter filter = new OutTheCodeFilter(selector);
 		PhpParser parser = new PhpParser(filter);
 		parser.setParserState(parserState);
+		parser.getASTFactory().setASTNodeClass(MarkedAST.class);
 
 		parser.program();
 		return parser.getAST();
