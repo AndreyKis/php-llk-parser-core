@@ -2,6 +2,7 @@
  * $Id$
  * 
  * Author: Konstantin Nekrasov
+ * Created: Feb 8, 2012
  */
 
 package php.parser;

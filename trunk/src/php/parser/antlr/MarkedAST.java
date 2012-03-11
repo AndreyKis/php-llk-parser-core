@@ -1,3 +1,9 @@
+/*
+ * $Id$
+ * 
+ * Author: Konstantin Nekrasov
+ * Created: Mar 11, 2012
+ */
 package php.parser.antlr;
 
 import antlr.CommonAST;
