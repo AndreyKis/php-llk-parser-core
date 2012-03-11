@@ -1,7 +1,7 @@
 /*
  * $Id$
  * 
- * Copyright $Date$
+ * Copyright $Date $
  * Author: Konstantin Nekrasov
  */
 
