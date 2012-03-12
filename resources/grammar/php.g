@@ -505,11 +505,21 @@ logicalXorExpression[boolean allowComma]:
   ;
 
 logicalAndExpression[boolean allowComma]:
-  assignmentExpression[allowComma] (LITERAL_and^ assignmentExpression[allowComma])*
+  ternaryExpression[allowComma] (LITERAL_and^ ternaryExpression[allowComma])*
+  ;
+
+ternaryExpression[boolean allowComma]:
+  assignmentExpression[allowComma] 
+  (
+    QUESTION^ 
+    assignmentExpression[allowComma] 
+    COLON 
+    assignmentExpression[allowComma]
+  )*
   ;
 
 assignmentExpression[boolean allowComma]:
-  ternaryExpression[allowComma] (
+  booleanOrExpression[allowComma] (
     (   ASSIGN^
     |   PLUS_ASS^
     |   MINUS_ASS^
@@ -525,26 +535,7 @@ assignmentExpression[boolean allowComma]:
     |   OR_ASS^
     |   DOT_ASS^
     )
-  ternaryExpression[allowComma])*
-  ;
-
-ternaryExpression[boolean allowComma]:
-  propertyAccessExpression[allowComma] 
-  (
-    QUESTION^ 
-    ternaryExpression[allowComma] 
-    COLON 
-    ternaryExpression[allowComma]
-  )?
-  ;
-
-propertyAccessExpression[boolean allowComma]:
-  booleanOrExpression[allowComma]
-  (MMBR^
-    {metMMBR = true;}
-    booleanOrExpression[allowComma]
-    {metMMBR = false;}
-  )*
+  booleanOrExpression[allowComma])*
   ;
 
 booleanOrExpression[boolean allowComma]:
@@ -604,8 +595,18 @@ logicalNotExpression[boolean allowComma]:
   | (instanceofExpression[allowComma])
   ;
 
+
 instanceofExpression[boolean allowComma]:
-  typeCastExpression[allowComma] ((LITERAL_instanceof^) typeCastExpression[allowComma])*
+  propertyAccessExpression[allowComma] ((LITERAL_instanceof^) propertyAccessExpression[allowComma])*
+  ;
+
+propertyAccessExpression[boolean allowComma]:
+  typeCastExpression[allowComma]
+  (MMBR^
+    {metMMBR = true;}
+    typeCastExpression[allowComma]
+    {metMMBR = false;}
+  )*
   ;
 
 typeCastExpression[boolean allowComma]:
