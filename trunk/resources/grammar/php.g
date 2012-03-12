@@ -525,7 +525,7 @@ assignmentExpression[boolean allowComma]:
     |   OR_ASS^
     |   DOT_ASS^
     )
-  expression[true, allowComma])?
+  ternaryExpression[allowComma])*
   ;
 
 ternaryExpression[boolean allowComma]:
@@ -611,7 +611,7 @@ instanceofExpression[boolean allowComma]:
 typeCastExpression[boolean allowComma]:
   (LPAREN typeName RPAREN )  => 
     (LPAREN^ typeName RPAREN { #LPAREN.setType(TYPE_CAST) ;} typeCastExpression[allowComma] ) 
-  | (BNOT^ typeCastExpression[allowComma] )
+  | (BW_NOT^ typeCastExpression[allowComma] )
   | (MINUS^ {#MINUS.setType(UNARY_MINUS);} typeCastExpression[allowComma]) 
   | (PLUS^ {#PLUS.setType(UNARY_PLUS);} typeCastExpression[allowComma]) 
   | (DOG^ typeCastExpression[allowComma])
