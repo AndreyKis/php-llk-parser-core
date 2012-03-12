@@ -609,7 +609,7 @@ instanceofExpression[boolean allowComma]:
   ;
 
 typeCastExpression[boolean allowComma]:
-  (LPAREN typeName RPAREN )  => 
+  (LPAREN typeName RPAREN expression[false, false])  => 
     (LPAREN^ typeName RPAREN { #LPAREN.setType(TYPE_CAST) ;} typeCastExpression[allowComma] ) 
   | (BW_NOT^ typeCastExpression[allowComma] )
   | (MINUS^ {#MINUS.setType(UNARY_MINUS);} typeCastExpression[allowComma]) 
