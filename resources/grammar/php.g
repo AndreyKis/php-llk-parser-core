@@ -584,12 +584,7 @@ sumExpression[boolean allowComma]:
   ;
 
 multiplExpression[boolean allowComma]:
-  logicalNotExpression[allowComma] ( (ASTERISK^|SLASH^|MOD^) logicalNotExpression[allowComma])* 
-  ;
-//TODO: logicalNot must have higher priority. at least higher than type cast
-logicalNotExpression[boolean allowComma]:
-    (LNOT^ logicalNotExpression[allowComma])
-  | (instanceofExpression[allowComma])
+  instanceofExpression[allowComma] ( (ASTERISK^|SLASH^|MOD^) instanceofExpression[allowComma])* 
   ;
 
 
@@ -612,8 +607,13 @@ typeCastExpression[boolean allowComma]:
   | (BW_NOT^ typeCastExpression[allowComma] )
   | (MINUS^ {#MINUS.setType(UNARY_MINUS);} typeCastExpression[allowComma]) 
   | (PLUS^ {#PLUS.setType(UNARY_PLUS);} typeCastExpression[allowComma]) 
-  | (DOG^ typeCastExpression[allowComma])
-  | incrementExpression[allowComma]
+  | logicalNotExpression[allowComma]
+  ;
+
+logicalNotExpression[boolean allowComma]:
+    (LNOT^ logicalNotExpression[allowComma])
+  | (DOG^ logicalNotExpression[allowComma])
+  | (incrementExpression[allowComma])
   ;
 
 incrementExpression[boolean allowComma]:
