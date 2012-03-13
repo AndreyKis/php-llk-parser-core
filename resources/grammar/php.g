@@ -93,7 +93,6 @@ statement:
   | gotoStatement
   | declareStatement
   | throwStatement
-  | defineStatement
   | globalStatement
   | staticStatement
   | tryCatchStatement
@@ -159,10 +158,9 @@ switchStatement:
   switchBody
   ;
 
-defineStatement:
+defineStatementExpression:
   LITERAL_define^ 
   LPAREN expression[true, false] COMMA expression[true, false] RPAREN 
-  SEMI
   ;
 
 globalStatement:
@@ -632,6 +630,7 @@ incrementExpression[boolean allowComma]:
 functionCallExpression[boolean allowComma]:
     listStatementExpression
   | requireStatementExpression
+  | defineStatementExpression
   | includeStatementExpression
   | (
       arrayAccessExpression[allowComma] 
