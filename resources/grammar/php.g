@@ -589,7 +589,7 @@ sumExpression[boolean allowComma]:
 multiplExpression[boolean allowComma]:
   logicalNotExpression[allowComma] ( (ASTERISK^|SLASH^|MOD^) logicalNotExpression[allowComma])* 
   ;
-
+//TODO: logicalNot must have higher priority. at least higher than type cast
 logicalNotExpression[boolean allowComma]:
     (LNOT^ logicalNotExpression[allowComma])
   | (instanceofExpression[allowComma])
@@ -644,7 +644,7 @@ functionCallExpression[boolean allowComma]:
   ;
 
 arrayAccessExpression[boolean allowComma]:
-  newExpression[allowComma] 
+  referenceExpression[allowComma] 
   (
     (LBRACK expression[true, allowComma] RBRACK) =>
       (
@@ -658,16 +658,16 @@ arrayAccessExpression[boolean allowComma]:
   )*
   ;
 
-newExpression[boolean allowComma]:
-  (LITERAL_new^ | LITERAL_clone^)? 
-  referenceExpression[allowComma]
-  ;
-
 referenceExpression[boolean allowComma]:
   (BAND^ {#BAND.setType(REFERENCE);})? 
-  basicExpression[allowComma]
+  newExpression[allowComma]
   ;
   
+newExpression[boolean allowComma]:
+  (LITERAL_new^ | LITERAL_clone^)? 
+  basicExpression[allowComma]
+  ;
+
 basicExpression[boolean allowComma]:
     (LITERAL_true )
   | (LITERAL_false  )
