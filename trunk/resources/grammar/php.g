@@ -338,7 +338,7 @@ functionDeclaration!:
 functionHeader:
   LITERAL_function^ 
   (BAND {#BAND.setType(REFERENCE);})? 
-  fname : IDENT 
+  fname : baseIdentifier 
   LPAREN
   (pl : paramList)? 
   RPAREN
@@ -410,7 +410,8 @@ classDeclaration:       //classHeader
   ;
 
 classModifier:
-  (LITERAL_abstract)?
+  (LITERAL_abstract | LITERAL_final)*
+
   { #classModifier = #( #[MODIFIERS, ""], #classModifier ) ;}
   ;
 
@@ -696,11 +697,22 @@ baseIdentifier:
   | LITERAL_self
   | LITERAL_boolean
   | LITERAL_resource
+  | LITERAL_string
+  | LITERAL_bool
+  | LITERAL_double
   | LITERAL_final
   | LITERAL_float
   | LITERAL_int
   | LITERAL_function
   | LITERAL_abstract
+  | LITERAL_public
+  | LITERAL_private
+  | LITERAL_protected
+  | LITERAL_list
+  | LITERAL_return
+  | LITERAL_object
+//  | LITERAL_default
+  | LITERAL_namespace
   | IDENT
   | VARIABLE   
   | compositeIdentifier
@@ -747,6 +759,7 @@ typeName:
   | LITERAL_bool
   | LITERAL_boolean
   | LITERAL_resource
+  | LITERAL_self
   | typeIdentifier
   ;
 
