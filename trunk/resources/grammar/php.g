@@ -694,6 +694,13 @@ scopeResolutionExpression:
 baseIdentifier:
     LITERAL_parent
   | LITERAL_self
+  | LITERAL_boolean
+  | LITERAL_resource
+  | LITERAL_final
+  | LITERAL_float
+  | LITERAL_int
+  | LITERAL_function
+  | LITERAL_abstract
   | IDENT
   | VARIABLE   
   | compositeIdentifier
