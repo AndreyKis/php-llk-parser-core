@@ -386,8 +386,11 @@ interfaceBody:
   ;
 
 interfaceMemberDefinition:
-  memberModifiers 
-  functionHeader 
+  memberModifiers
+  (
+    functionHeader
+  | memberDataItems
+  )
   SEMI
   { #interfaceMemberDefinition = #( #[MEMBER_DEF, ""], #interfaceMemberDefinition) ;}
   ;
