@@ -708,6 +708,8 @@ baseIdentifier:
   | LITERAL_public
   | LITERAL_private
   | LITERAL_protected
+  | LITERAL_print
+  | LITERAL_clone
   | LITERAL_list
   | LITERAL_return
   | LITERAL_object
