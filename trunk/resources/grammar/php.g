@@ -192,7 +192,7 @@ switchBody{
 
 caseOption:
   LITERAL_case^ expression[true, true] (COLON | SEMI)
-  (options {greedy=true;}: statement)*
+  (options {greedy=true;}: {LA(1) != LITERAL_default}? statement)*
   ;
 
 defaultOption:
@@ -711,7 +711,7 @@ baseIdentifier:
   | LITERAL_list
   | LITERAL_return
   | LITERAL_object
-//  | LITERAL_default
+  | LITERAL_default
   | LITERAL_namespace
   | IDENT
   | VARIABLE   
