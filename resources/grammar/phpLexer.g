@@ -167,8 +167,6 @@ INC             :       "++";
 
 DEC             :       "--";
 
-DOT: {(LA(2) > '9' || LA(2) < '0' )}? ".";
-
 MMBR            :       "->";
 
 DOUBLECOLON     :       "::";
@@ -219,6 +217,8 @@ protected DIGIT :        '0'..'9';
 protected DIGIT_NOZERO : '1'..'9';
 protected ESCAPE: '\\' . ;
 protected BUCK  : "$";
+
+protected DOT: ".";
 
 IDENT   options {testLiterals=false;}
   :
@@ -459,12 +459,22 @@ PHP_END
 protected
 EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
 
-NUMBER  :       ('0' (  /*only zero*/
-                        |('x' ((DIGIT)|('A'..'F' | 'a'..'f'))+ /*hex like 0xA..*/  )
-                        | (DOT (DIGIT)*  (EXPONENT)?    /*fraction with leading zero 0.124*/ )
-                        | ( ('0'..'7')+                 /*octvalue 077*/  )))                    
+NUMBER  :       ('0' 
+                  (  /*only zero*/
+                    | ('x' 
+                        (
+                            (DIGIT)
+                          | ('A'..'F' | 'a'..'f')
+                        )+ /*hex like 0xA..*/  
+                      )
+                    | (DOT (DIGIT)*  (EXPONENT)?    /*fraction with leading zero 0.124*/ )
+                    | ( ('0'..'7')+                 /*octvalue 077*/  )))                    
                 | (DIGIT_NOZERO (DIGIT)* (DOT (DIGIT)*)? (EXPONENT)? /*usual decimal value (integer or not)*/)
-                | (DOT (DIGIT)+ (EXPONENT)? )
+                | (DOT {$setType(DOT);} 
+                    (
+                      (DIGIT)+ (EXPONENT)? {$setType(NUMBER);} 
+                    )?
+                  )
                 ;
 
 

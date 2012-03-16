@@ -740,11 +740,10 @@ arrayItem!:
   ;
 
 compositeIdentifier:
-  (
-    COMPOUND_VAR_START^ 
-    | {metMMBR}? LCURLY^ {#LCURLY.setType(INDIRECT_VAR_ID);}
-  ) 
-  expression[false, true] RCURLY
+    
+  (LCURLY expression[false, true] RCURLY) => 
+      (LCURLY^ {#LCURLY.setType(INDIRECT_VAR_ID);} expression[false, true] RCURLY)
+    | (COMPOUND_VAR_START^ expression[false, true] RCURLY)
   ;
 
 typeName:
