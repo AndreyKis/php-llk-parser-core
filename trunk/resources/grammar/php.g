@@ -85,6 +85,7 @@ statement:
   | forStatement
   | foreachStatement
   | echoStatement
+  | printStatement
   | breakStatement
   | continueStatement
   | returnStatement
@@ -318,6 +319,14 @@ foreachCondition!:
 echoStatement:
   LITERAL_echo^ (
     expression[true, true]
+  )
+  SEMI
+  ;
+
+printStatement:
+  LITERAL_print^ (
+    //the same to echo statement but without comma support.
+    expression[true, false]
   )
   SEMI
   ;
