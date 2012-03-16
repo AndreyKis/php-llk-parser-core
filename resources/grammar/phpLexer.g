@@ -442,7 +442,7 @@ STRING  :
 
 PHP_START
         :       
-                {LA(3) != '='}? "<?" ("php")?
+                {LA(3) != '='}? "<?" (('p'|'P')  ('h' | 'H') ('p' | 'P'))?
                 {$setType(Token.SKIP);}
         ; 
 

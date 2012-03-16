@@ -89,7 +89,6 @@ statement:
   | breakStatement
   | continueStatement
   | returnStatement
-  | exitStatement
   | gotoStatement
   | declareStatement
   | throwStatement
@@ -228,8 +227,8 @@ dieStatementExpression:
   LITERAL_die^ LPAREN (expression[true, true])? RPAREN 
   ;
 
-exitStatement:
-  LITERAL_exit^ (LPAREN RPAREN)?
+exitStatementExpression:
+  LITERAL_exit^ (LPAREN (expression[false, true])?  RPAREN)?
   ;
 
 declareStatement:
@@ -636,7 +635,8 @@ incrementExpression[boolean allowComma]:
   ;
 
 functionCallExpression[boolean allowComma]:
-    listStatementExpression
+    listStatementExpression 
+  | exitStatementExpression
   | requireStatementExpression
   | dieStatementExpression
   | defineStatementExpression
