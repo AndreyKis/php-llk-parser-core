@@ -608,16 +608,12 @@ propertyAccessExpression[boolean allowComma]:
 typeCastExpression[boolean allowComma]:
   (LPAREN typeName RPAREN expression[false, false])  => 
     (LPAREN^ typeName RPAREN { #LPAREN.setType(TYPE_CAST) ;} typeCastExpression[allowComma] ) 
+  | (LNOT^ typeCastExpression[allowComma])
+  | (DOG^ typeCastExpression[allowComma])
   | (BW_NOT^ typeCastExpression[allowComma] )
   | (MINUS^ {#MINUS.setType(UNARY_MINUS);} typeCastExpression[allowComma]) 
   | (PLUS^ {#PLUS.setType(UNARY_PLUS);} typeCastExpression[allowComma]) 
-  | logicalNotExpression[allowComma]
-  ;
-
-logicalNotExpression[boolean allowComma]:
-    (LNOT^ logicalNotExpression[allowComma])
-  | (DOG^ logicalNotExpression[allowComma])
-  | (incrementExpression[allowComma])
+  | incrementExpression[allowComma]
   ;
 
 incrementExpression[boolean allowComma]:
