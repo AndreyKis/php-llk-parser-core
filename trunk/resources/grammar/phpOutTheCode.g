@@ -35,7 +35,7 @@ PHP_ECHO:
   ;
 
 START_CODE:
-  {LA(3) != '='}? "<?" ("php")?
+  {LA(3) != '='}? "<?" (('p'|'P')  ('h' | 'H') ('p' | 'P'))?
 
   {
     state.getSelector().push("codelexer");
