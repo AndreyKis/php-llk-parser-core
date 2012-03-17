@@ -1,5 +1,5 @@
 /*
- * $Id: Parser.java 10 2012-03-11 19:38:25Z const.nekrasoff@gmail.com $
+ * $Id$
  * 
  * Author: Konstantin Nekrasov
  * Created: Mar 16, 2012
