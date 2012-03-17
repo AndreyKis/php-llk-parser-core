@@ -49,13 +49,12 @@ public class Main {
 			if (!arg.startsWith("-")) {
 				task.setFileName(args[i]);
 			} else {
-				if (arg.equals( "--verbose")) {
+				if (arg.equals("--verbose")) {
 					task.setVerbose(true);
-				} else if (arg.equals( "--print-ast")) {
+				} else if (arg.equals("--print-ast")) {
 					task.setPrintAST(true);
-				}
-				else if (arg.equals("--help")) {
-					
+				} else if (arg.equals("--help")) {
+
 				}
 			}
 		}
@@ -80,9 +79,9 @@ public class Main {
 				printHelpInfo();
 				return true;
 			}
-			
+
 			if (task.isVerbose()) {
-				System.out.println("PHP source file name: " + task.getFileName());
+				System.out.println(task.getFileName());
 			}
 			AST root = Parser.parse(getInputStream(task));
 			if (task.isPrintAST()) {
@@ -90,30 +89,33 @@ public class Main {
 			}
 			result = true;
 		} catch (RecognitionException e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 		} catch (TokenStreamException e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 		} catch (FileNotFoundException e) {
 			System.err.println("The given file " + task.getFileName()
 					+ " is not readable or doesn't exist.");
 		}
-		
+
 		if (task.isVerbose()) {
 			System.out.println("	Parse result: " + (result ? "OK" : "FAILED"));
 		}
-		
+
 		return result;
 	}
 
 	private void printHelpInfo() {
 		System.out.println();
 		System.out.println("  PHP 5.2 parser functionality test program");
-		System.out.println("  Usage: java -jar php-llk-parser.jar [options] <php filename to test>");
+		System.out
+				.println("  Usage: java -jar php-llk-parser.jar [options] <php filename to test>");
 		System.out.println();
 		System.out.println("    Availaible options:");
-		System.out.println("	--print-ast		Prints the abstract syntactic tree for the given file");
-		System.out.println("	--verbose		Reports additional info on the process result");
-		
+		System.out
+				.println("	--print-ast		Prints the abstract syntactic tree for the given file");
+		System.out
+				.println("	--verbose		Reports additional info on the process result");
+
 	}
 
 	/**
