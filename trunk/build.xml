@@ -71,5 +71,20 @@
       <mkdir dir="${dest.dir}"/>
       <javac srcdir="${src.dir}" destdir="${dest.dir}" classpathref="classpath"/>
     </target>
+	
+	  <target name="testjar" depends="build">
+	        <mkdir dir="bin/jar"/>
+	        <manifestclasspath property="manifest_cp" jarfile="php-llk-parser.jar">
+	            <classpath refid="classpath" />
+	        </manifestclasspath>
+	        <jar destfile="bin/jar/php-llk-parser.jar" basedir="${dest.dir}">
+	            <zipgroupfileset dir="${lib.dir}" includes="*.jar" /> 
+	            <manifest>
+	                <attribute name="Main-Class" value="php.parser.util.console.Main"/>
+	              <!-- <attribute name="Class-Path" value="."/> -->
+
+	            </manifest>
+	        </jar>
+	    </target>
 </project>
 

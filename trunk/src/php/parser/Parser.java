@@ -20,9 +20,17 @@ import antlr.TokenStreamException;
 import antlr.TokenStreamSelector;
 import antlr.collections.AST;
 
+/**
+ * Utility class that encapsulates the logic of parser correct invocation
+ * (setting up filters, lexers etc).
+ * 
+ * @author knekrasov
+ * 
+ */
 public class Parser {
 
-	public static AST parse(Reader input) throws RecognitionException, TokenStreamException {
+	public static AST parse(Reader input) throws RecognitionException,
+			TokenStreamException {
 		ParsingState parserState = new ParsingState();
 		TokenStreamSelector selector = parserState.getSelector();
 
