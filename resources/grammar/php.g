@@ -15,6 +15,7 @@ class PhpParser extends Parser;
 options {
   buildAST = true;
   importVocab=Php;
+  defaultErrorHandler=false; 
   k=2;
 }
 
@@ -64,7 +65,6 @@ tokens{
     this.state = state;
   }
   private boolean metAbstractModifier;
-  private boolean metMMBR;
 }
 
 program: 
@@ -607,9 +607,7 @@ instanceofExpression[boolean allowComma]:
 propertyAccessExpression[boolean allowComma]:
   typeCastExpression[allowComma]
   (MMBR^
-    {metMMBR = true;}
     typeCastExpression[allowComma]
-    {metMMBR = false;}
   )*
   ;
 
