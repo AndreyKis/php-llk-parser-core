@@ -1,3 +1,8 @@
+/*
+ * $Id$
+ * 
+ * Author: Konstantin Nekrasov
+ */
 package php.parser.antlr;
 
 import java.util.BitSet;

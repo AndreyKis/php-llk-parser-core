@@ -1,7 +1,6 @@
 /*
  * $Id$
  * 
- * Copyright $Date$
  * Author: Konstantin Nekrasov
  *
  */
