@@ -89,7 +89,8 @@ public class Main {
 			}
 			result = true;
 		} catch (RecognitionException e) {
-			System.err.println(e.getMessage());
+			System.err.println("Parse error at [" + e.getLine() + ":"
+					+ e.getColumn() + "]: " + e.getMessage());
 		} catch (TokenStreamException e) {
 			System.err.println(e.getMessage());
 		} catch (FileNotFoundException e) {
