@@ -521,9 +521,9 @@ ternaryExpression[boolean allowComma]:
   assignmentExpression[allowComma] 
   (
     QUESTION^ 
-    ternaryExpression[allowComma] 
+    expression[true, allowComma] 
     COLON
-    ternaryExpression[allowComma]
+    expression[true, allowComma]
   )?
   ;
 
