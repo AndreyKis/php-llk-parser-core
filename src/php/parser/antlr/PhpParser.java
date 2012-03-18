@@ -5197,29 +5197,56 @@ inputState.guessing--;
 		ASTPair currentAST = new ASTPair();
 		AST newExpression_AST = null;
 		
-		{
-		if ((LA(1)==LITERAL_new)) {
+		boolean synPredMatched276 = false;
+		if (((LA(1)==LITERAL_clone) && (_tokenSet_30.member(LA(2))))) {
+			int _m276 = mark();
+			synPredMatched276 = true;
+			inputState.guessing++;
+			try {
+				{
+				match(LITERAL_clone);
+				basicExpression(allowComma);
+				}
+			}
+			catch (RecognitionException pe) {
+				synPredMatched276 = false;
+			}
+			rewind(_m276);
+inputState.guessing--;
+		}
+		if ( synPredMatched276 ) {
+			{
 			AST tmp238_AST = null;
 			tmp238_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp238_AST);
-			match(LITERAL_new);
+			astFactory.addASTChild(currentAST, tmp238_AST);
+			match(LITERAL_clone);
+			basicExpression(allowComma);
+			astFactory.addASTChild(currentAST, returnAST);
+			}
+			newExpression_AST = (AST)currentAST.root;
 		}
-		else if ((LA(1)==LITERAL_clone) && (_tokenSet_30.member(LA(2)))) {
+		else if ((LA(1)==LITERAL_new)) {
+			{
 			AST tmp239_AST = null;
 			tmp239_AST = astFactory.create(LT(1));
 			astFactory.makeASTRoot(currentAST, tmp239_AST);
-			match(LITERAL_clone);
+			match(LITERAL_new);
+			basicExpression(allowComma);
+			astFactory.addASTChild(currentAST, returnAST);
+			}
+			newExpression_AST = (AST)currentAST.root;
 		}
 		else if ((_tokenSet_30.member(LA(1))) && (_tokenSet_13.member(LA(2)))) {
+			{
+			basicExpression(allowComma);
+			astFactory.addASTChild(currentAST, returnAST);
+			}
+			newExpression_AST = (AST)currentAST.root;
 		}
 		else {
 			throw new NoViableAltException(LT(1), getFilename());
 		}
 		
-		}
-		basicExpression(allowComma);
-		astFactory.addASTChild(currentAST, returnAST);
-		newExpression_AST = (AST)currentAST.root;
 		returnAST = newExpression_AST;
 	}
 	
@@ -5396,7 +5423,7 @@ inputState.guessing--;
 		baseIdentifier();
 		astFactory.addASTChild(currentAST, returnAST);
 		{
-		_loop288:
+		_loop292:
 		do {
 			if ((LA(1)==DOUBLECOLON)) {
 				AST tmp251_AST = null;
@@ -5407,7 +5434,7 @@ inputState.guessing--;
 				astFactory.addASTChild(currentAST, returnAST);
 			}
 			else {
-				break _loop288;
+				break _loop292;
 			}
 			
 		} while (true);
@@ -5478,7 +5505,7 @@ inputState.guessing--;
 		arrayItem();
 		astFactory.addASTChild(currentAST, returnAST);
 		{
-		_loop293:
+		_loop297:
 		do {
 			if ((LA(1)==COMMA)) {
 				AST tmp256_AST = null;
@@ -5489,7 +5516,7 @@ inputState.guessing--;
 				astFactory.addASTChild(currentAST, returnAST);
 			}
 			else {
-				break _loop293;
+				break _loop297;
 			}
 			
 		} while (true);
@@ -5632,7 +5659,7 @@ inputState.guessing--;
 		astFactory.addASTChild(currentAST, tmp257_AST);
 		match(IDENT);
 		{
-		_loop306:
+		_loop310:
 		do {
 			if ((LA(1)==DOUBLECOLON)) {
 				AST tmp258_AST = null;
@@ -5645,7 +5672,7 @@ inputState.guessing--;
 				match(IDENT);
 			}
 			else {
-				break _loop306;
+				break _loop310;
 			}
 			
 		} while (true);

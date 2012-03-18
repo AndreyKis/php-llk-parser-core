@@ -670,8 +670,10 @@ referenceExpression[boolean allowComma]:
   ;
   
 newExpression[boolean allowComma]:
-  (LITERAL_new^ | LITERAL_clone^)? 
-  basicExpression[allowComma]
+  (LITERAL_clone basicExpression[allowComma]) => 
+    (LITERAL_clone basicExpression[allowComma])
+  | (LITERAL_new^  basicExpression[allowComma])
+  | (basicExpression[allowComma])
   ;
 
 basicExpression[boolean allowComma]:
