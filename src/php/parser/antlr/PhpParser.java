@@ -3938,13 +3938,13 @@ inputState.guessing--;
 			tmp179_AST = astFactory.create(LT(1));
 			astFactory.makeASTRoot(currentAST, tmp179_AST);
 			match(QUESTION);
-			ternaryExpression(allowComma);
+			expression(true, allowComma);
 			astFactory.addASTChild(currentAST, returnAST);
 			AST tmp180_AST = null;
 			tmp180_AST = astFactory.create(LT(1));
 			astFactory.addASTChild(currentAST, tmp180_AST);
 			match(COLON);
-			ternaryExpression(allowComma);
+			expression(true, allowComma);
 			astFactory.addASTChild(currentAST, returnAST);
 		}
 		else if ((_tokenSet_24.member(LA(1))) && (_tokenSet_25.member(LA(2)))) {
