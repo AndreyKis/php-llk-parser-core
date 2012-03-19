@@ -711,6 +711,7 @@ baseIdentifier:
   | LITERAL_final
   | LITERAL_float
   | LITERAL_int
+  | LITERAL_long
   | LITERAL_function
   | LITERAL_abstract
   | LITERAL_public
@@ -719,6 +720,8 @@ baseIdentifier:
   | LITERAL_print
   | LITERAL_clone
   | LITERAL_list
+  | LITERAL_use
+  | LITERAL_interface
   | LITERAL_return
   | LITERAL_object
   | LITERAL_default
@@ -769,6 +772,7 @@ typeName:
   | LITERAL_string
   | LITERAL_array
   | LITERAL_bool
+  | LITERAL_long
   | LITERAL_boolean
   | LITERAL_resource
   | LITERAL_self
