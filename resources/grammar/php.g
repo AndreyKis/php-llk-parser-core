@@ -409,13 +409,11 @@ interfaceMemberDefinition:
   ;
 
 
-classDeclaration:       //classHeader 
+classDeclaration:
   classModifier LITERAL_class^ className
   (
-
        (extendsList (implementsList)? ) 
-     |
-       (implementsList (extendsList)? )
+     | (implementsList (extendsList)? )
      |
   )
 
@@ -725,6 +723,7 @@ baseIdentifier:
   | LITERAL_object
   | LITERAL_default
   | LITERAL_namespace
+  | LITERAL_class
   | IDENT
   | VARIABLE   
   | compositeIdentifier
