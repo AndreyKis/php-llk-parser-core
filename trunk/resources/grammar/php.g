@@ -224,7 +224,12 @@ gotoStatement:
   ;
 
 dieStatementExpression:
-  LITERAL_die^ LPAREN (expression[true, true])? RPAREN 
+  LITERAL_die^ 
+  (
+      (LPAREN RPAREN) => (LPAREN RPAREN)
+    | (expression[true, true])
+    |
+  )
   ;
 
 exitStatementExpression:
