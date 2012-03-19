@@ -724,6 +724,8 @@ baseIdentifier:
   | LITERAL_default
   | LITERAL_namespace
   | LITERAL_class
+  | LITERAL_var
+  | LITERAL_array
   | IDENT
   | VARIABLE   
   | compositeIdentifier
