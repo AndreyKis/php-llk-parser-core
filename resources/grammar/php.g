@@ -673,9 +673,10 @@ referenceExpression[boolean allowComma]:
   ;
   
 newExpression[boolean allowComma]:
-  (LITERAL_clone basicExpression[allowComma]) => 
-    (LITERAL_clone basicExpression[allowComma])
-  | (LITERAL_new^  basicExpression[allowComma])
+    (LITERAL_clone basicExpression[allowComma]) => 
+      (LITERAL_clone basicExpression[allowComma])
+  | (LITERAL_new^  basicExpression[allowComma]) => 
+      (LITERAL_new^  basicExpression[allowComma])
   | (basicExpression[allowComma])
   ;
 
@@ -729,6 +730,7 @@ baseIdentifier:
   | LITERAL_class
   | LITERAL_var
   | LITERAL_array
+  | LITERAL_new
   | IDENT
   | VARIABLE   
   | compositeIdentifier
