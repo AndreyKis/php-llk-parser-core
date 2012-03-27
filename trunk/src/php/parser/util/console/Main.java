@@ -108,6 +108,7 @@ public class Main {
 	private void printHelpInfo() {
 		System.out.println();
 		System.out.println("  PHP 5.2 parser functionality test program");
+		System.out.println("  Version: " + Main.class.getPackage().getImplementationVersion());
 		System.out
 				.println("  Usage: java -jar php-llk-parser.jar [options] <php filename to test>");
 		System.out.println();
