@@ -4,11 +4,24 @@
     <property name="src.dir" value="src"/>
     <property name="dest.dir" value="bin/"/>
     <property name="grammar.dir" value="resources/grammar"/>
-  
+    <property name="version.major" value="1"/>
+    <property name="version.minor" value="0"/>
+    <property name="version.state" value="beta"/>
+
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
+    <target name="find_revision" description="Sets property 'revision.number' to the head svn revision">
+      <property name="revision" value="HEAD"/>
 
+      <!-- find out revision number of HEAD, need svn.exe installed on local machine -->
+      <exec executable="svn" output="svnlog.out">
+        <arg line="info ${src.dir}/../build.xml"/>
+      </exec>
+      <loadproperties srcfile="svnlog.out"/>
+      <echo>current revision is ${Revision}</echo>
+      <delete file="svnlog.out"/>
+    </target>
     <target name="cleangrammar">
       <delete includeemptydirs="true">
         <fileset dir="${grammar.dir}">
@@ -67,7 +80,7 @@
       <delete dir="bin"/>
     </target>
 
-    <target name="build" depends="clean,invokeantlr">
+    <target name="build" depends="find_revision,clean,invokeantlr">
       <mkdir dir="${dest.dir}"/>
       <javac srcdir="${src.dir}" destdir="${dest.dir}" classpathref="classpath"/>
     </target>
@@ -82,7 +95,8 @@
 	            <manifest>
 	                <attribute name="Main-Class" value="php.parser.util.console.Main"/>
 	              <!-- <attribute name="Class-Path" value="."/> -->
-
+                <attribute name="Implementation-Version" 
+                  value="${version.major}.${version.minor}.r${Revision}.${version.state}"/>
 	            </manifest>
 	        </jar>
 	    </target>
