@@ -83,7 +83,9 @@ public class Main {
 			if (task.isVerbose()) {
 				System.out.println(task.getFileName());
 			}
-			AST root = Parser.parse(getInputStream(task));
+			
+			Parser parser = new Parser();
+			AST root = parser.parse(getInputStream(task));
 			if (task.isPrintAST()) {
 				printTree(root, 0);
 			}
