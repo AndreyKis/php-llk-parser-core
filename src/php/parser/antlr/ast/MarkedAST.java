@@ -4,7 +4,7 @@
  * Author: Konstantin Nekrasov
  * Created: Mar 11, 2012
  */
-package php.parser.antlr;
+package php.parser.antlr.ast;
 
 import antlr.CommonAST;
 import antlr.Token;

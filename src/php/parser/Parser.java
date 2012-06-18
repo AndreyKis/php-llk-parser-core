@@ -9,12 +9,13 @@ package php.parser;
 
 import java.io.Reader;
 
-import php.parser.antlr.MarkedAST;
 import php.parser.antlr.OutTheCodeFilter;
 import php.parser.antlr.ParsingState;
 import php.parser.antlr.PhpLexer;
 import php.parser.antlr.PhpOutTheCodeLexer;
 import php.parser.antlr.PhpParser;
+import php.parser.antlr.ast.MarkedASTFactory;
+import antlr.ASTFactory;
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 import antlr.TokenStreamSelector;
@@ -28,8 +29,13 @@ import antlr.collections.AST;
  * 
  */
 public class Parser {
+	private ASTFactory astFactory;
+	
+	public Parser() {
+		astFactory = new MarkedASTFactory();
+	}
 
-	public static AST parse(Reader input) throws RecognitionException,
+	public AST parse(Reader input) throws RecognitionException,
 			TokenStreamException {
 		ParsingState parserState = new ParsingState();
 		TokenStreamSelector selector = parserState.getSelector();
@@ -46,10 +52,22 @@ public class Parser {
 
 		OutTheCodeFilter filter = new OutTheCodeFilter(selector);
 		PhpParser parser = new PhpParser(filter);
+		parser.setASTFactory(getAstFactory());
 		parser.setParserState(parserState);
-		parser.getASTFactory().setASTNodeClass(MarkedAST.class);
 
 		parser.program();
 		return parser.getAST();
+	}
+
+	public Class<? extends ASTFactory> getAstFactoryClass() {
+		return astFactory.getClass();
+	}
+
+	public void setAstFactoryClass(Class<? extends ASTFactory> astFactoryClass) throws InstantiationException, IllegalAccessException {
+		this.astFactory = astFactoryClass.newInstance();
+	}
+	
+	private ASTFactory getAstFactory() {
+		return astFactory;
 	}
 }
