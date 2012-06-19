@@ -686,6 +686,7 @@ basicExpression[boolean allowComma]:
   | (LITERAL_null  )
   | (NUMBER)
   | (STRING)
+  | (EXEC_STRING)
   | (HEREDOC)
   | arrayDefinition
   | identifier 
