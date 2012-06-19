@@ -397,6 +397,27 @@ TAB     :       '\t'{$setType(Token.SKIP);}
 BSLASH  :       '\\'
         ;
 
+EXEC_STRING  :
+    ( 
+      '`'
+        (
+        options {
+                        generateAmbigWarnings=false;
+                }
+        :
+
+                { LA(1) != '`'}? 
+        (
+        (ESCAPE) 
+        |       '\r' '\n'               {newline();}
+        |       '\r'                    {newline();}
+        |       '\n'                    {newline();}
+        |       ~('\n'|'\r')
+        )
+        )*
+      '`'
+    )
+    ;            
 
 STRING  :
             ( 
