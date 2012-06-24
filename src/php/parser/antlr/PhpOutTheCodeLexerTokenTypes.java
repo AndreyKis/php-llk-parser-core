@@ -148,13 +148,14 @@ public interface PhpOutTheCodeLexerTokenTypes {
 	int SPACE = 143;
 	int TAB = 144;
 	int BSLASH = 145;
-	int STRING = 146;
-	int PHP_START = 147;
-	int PHP_END = 148;
-	int EXPONENT = 149;
-	int NUMBER = 150;
-	int PHP_ECHO = 151;
-	int START_CODE = 152;
-	int ANY = 153;
-	int TEXT = 154;
+	int EXEC_STRING = 146;
+	int STRING = 147;
+	int PHP_START = 148;
+	int PHP_END = 149;
+	int EXPONENT = 150;
+	int NUMBER = 151;
+	int PHP_ECHO = 152;
+	int START_CODE = 153;
+	int ANY = 154;
+	int TEXT = 155;
 }

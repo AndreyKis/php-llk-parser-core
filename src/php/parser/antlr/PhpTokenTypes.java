@@ -147,9 +147,10 @@ public interface PhpTokenTypes {
 	int SPACE = 143;
 	int TAB = 144;
 	int BSLASH = 145;
-	int STRING = 146;
-	int PHP_START = 147;
-	int PHP_END = 148;
-	int EXPONENT = 149;
-	int NUMBER = 150;
+	int EXEC_STRING = 146;
+	int STRING = 147;
+	int PHP_START = 148;
+	int PHP_END = 149;
+	int EXPONENT = 150;
+	int NUMBER = 151;
 }
