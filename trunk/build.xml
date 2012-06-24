@@ -86,11 +86,12 @@
     </target>
 	
 	  <target name="testjar" depends="build">
+          <property name="jar.filename" value="php-parser.${version.major}.${version.minor}.r${Revision}.${version.state}.jar"/>
 	        <mkdir dir="bin/jar"/>
-	        <manifestclasspath property="manifest_cp" jarfile="php-llk-parser.jar">
+          <manifestclasspath property="manifest_cp" jarfile="${jar.filename}">
 	            <classpath refid="classpath" />
 	        </manifestclasspath>
-	        <jar destfile="bin/jar/php-llk-parser.jar" basedir="${dest.dir}">
+          <jar destfile="bin/jar/${jar.filename}" basedir="${dest.dir}">
 	            <zipgroupfileset dir="${lib.dir}" includes="*.jar" /> 
 	            <manifest>
 	                <attribute name="Main-Class" value="php.parser.util.console.Main"/>
